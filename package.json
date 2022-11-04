@@ -1,5 +1,27 @@
 {
   "dependencies": {
+    "@hapi/joi": "^17.1.1",
     "aws-sdk": "^2.1245.0"
-  }
+  },
+  "name": "aws-serverless-trigger-dynamo",
+  "description": "",
+  "version": "1.0.0",
+  "main": "handler.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "invoke-local": "sls invoke local -f hero-insert --path ./request-mock/hero.insert.json",
+    "invoke-trigger": "sls invoke local -f hero-trigger --path ./request-mock/hero-trigger.json",
+    "invoke": "sls invoke -f hero-insert --path ./request-mock/hero.insert.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TalisonF/aws-serverless-trigger-dynamo.git"
+  },
+  "author": "talisonf",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TalisonF/aws-serverless-trigger-dynamo/issues"
+  },
+  "homepage": "https://github.com/TalisonF/aws-serverless-trigger-dynamo#readme"
 }

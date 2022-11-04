@@ -1,0 +1,40 @@
+{
+    "Records": [
+      {
+        "eventID": "925e2ebc268d58f3ffe99f3691da6f27",
+        "eventName": "INSERT",
+        "eventVersion": "1.1",
+        "eventSource": "aws:dynamodb",
+        "awsRegion": "us-east-1",
+        "dynamodb": {
+          "ApproximateCreationDateTime": 1667526296,
+          "Keys": {
+            "nome": {
+              "S": "Flash"
+            },
+            "id": {
+              "S": "48f2ed90-5be2-11ed-b223-c79ce77b6193"
+            }
+          },
+          "NewImage": {
+            "createdAt": {
+              "S": "2022-11-04T01:44:56.297Z"
+            },
+            "nome": {
+              "S": "Flash"
+            },
+            "id": {
+              "S": "48f2ed90-5be2-11ed-b223-c79ce77b6193"
+            },
+            "poder": {
+              "S": "Velocidade"
+            }
+          },
+          "SequenceNumber": "200000000013188506517",
+          "SizeBytes": 142,
+          "StreamViewType": "NEW_AND_OLD_IMAGES"
+        },
+        "eventSourceARN": "arn:aws:dynamodb:us-east-1:378378943127:table/Heroes/stream/2022-11-04T01:41:42.417"
+      }
+    ]
+  }

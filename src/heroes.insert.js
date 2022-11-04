@@ -1,9 +1,19 @@
 const uuid = require('uuid');
+const Joi = require('@hapi/joi');
+const decoratorValidator = require('./util/decoratorValidator')
+const enumParams = require('./util/enumParams');
 
 class Handler {
     constructor({ dynamoDbSvc }) {
         this.dynamoDbSvc = dynamoDbSvc;
         this.dynamoDbTable = process.env.DYNAMODB_TABLE;
+    }
+
+    static validator() {
+        return Joi.object({
+            nome: Joi.string().max(100).min(2).required(),
+            poder: Joi.string().max(20).min(2).required(),
+        })
     }
 
     async insertItem(params) {
@@ -42,7 +52,7 @@ class Handler {
 
     async main(event) {
         try {
-            const data = JSON.parse(event.body);
+            const data = event.body;
             const dbParams = this.prepareData(data);
             await this.insertItem(dbParams);
             return this.handlerSuccess(dbParams.Item);
@@ -56,10 +66,15 @@ class Handler {
 // factory
 
 const AWS = require("aws-sdk");
+
 const dynamoDB = new AWS.DynamoDB.DocumentClient();
 
 const handler = new Handler({
     dynamoDbSvc: dynamoDB
 });
 
-module.exports = handler.main.bind(handler);
+module.exports = decoratorValidator(
+    handler.main.bind(handler),
+    Handler.validator(),
+    enumParams.ARG_TYPE.BODY
+);
